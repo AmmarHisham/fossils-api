@@ -4,7 +4,7 @@ public class GESubCategoryPostDTO {
 
 
 	private Long id;
-	private GESubCategoryDTO geSubCategory;
+	private GeSubCategoryDTO geSubCategory;
 	private String postDescription;
 	private String postImage;
 	private Long postYear;
@@ -17,11 +17,11 @@ public class GESubCategoryPostDTO {
 		this.id = id;
 	}
 
-	public GESubCategoryDTO getGeSubCategory() {
+	public GeSubCategoryDTO getGeSubCategory() {
 		return geSubCategory;
 	}
 
-	public void setGeSubCategory(GESubCategoryDTO geSubCategory) {
+	public void setGeSubCategory(GeSubCategoryDTO geSubCategory) {
 		this.geSubCategory = geSubCategory;
 	}
 
