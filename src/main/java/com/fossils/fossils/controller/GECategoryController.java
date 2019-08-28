@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fossils.fossils.dto.GECategoryDTO;
 import com.fossils.fossils.entity.GeCategory;
 import com.fossils.fossils.repository.GECategoryRepository;
+import com.fossils.fossils.repository.GEPageRepository;
 import com.fossils.fossils.service.GeologicEonCategoryService;
 
 @RestController
@@ -26,14 +27,20 @@ public class GECategoryController {
 
 	@Autowired
 	GECategoryRepository geologicEonCategoryRepository;
+	
+	@Autowired
+	GEPageRepository gePageRepository;
 
 	@Autowired
 	ModelMapper modelMapper;
-
-	@PostMapping("/api/category/addCategory")
-	public GeCategory addCategory(@RequestBody GeCategory geologicEonCategory) {
-		return geologicEonCategoryService.addCategory(geologicEonCategory);
-
+	
+	@PostMapping("/api/category/{page_id}/addCategory")
+	public GeCategory addSubCategory(@PathVariable(value = "page_id") Long pageId,
+			@RequestBody GeCategory geologicEonCategory) throws Exception {
+		return gePageRepository.findById(pageId).map(page -> {
+			geologicEonCategory.setGePage(page);
+			return geologicEonCategoryService.addCategory(geologicEonCategory);
+		}).orElseThrow(() -> new Exception("pageId " + pageId + " not found"));
 	}
 
 	@GetMapping("/api/category/result")
@@ -58,9 +65,8 @@ public class GECategoryController {
 		if (category.isPresent()) {
 			GeCategory newEntity = category.get();
 			newEntity.setName(geCategory.getName());
-			newEntity.setFromYear(geCategory.getFromYear());
-			newEntity.setToYear(geCategory.getToYear());
-			newEntity.setScaleUnit(geCategory.getScaleUnit());
+			newEntity.setFromAge(geCategory.getFromAge());
+			newEntity.setToAge(geCategory.getToAge());
 
 			newEntity = geologicEonCategoryRepository.save(newEntity);
 

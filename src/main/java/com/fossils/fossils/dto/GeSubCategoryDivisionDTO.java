@@ -1,9 +1,10 @@
 package com.fossils.fossils.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class GECategoryDTO implements Serializable {
+public class GeSubCategoryDivisionDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -11,8 +12,15 @@ public class GECategoryDTO implements Serializable {
 	private String name;
 	private Long fromAge;
 	private Long toAge;
-	private String bgImageURL;
-	private List<GeSubCategoryDTO> geSubCategories;
+	private List<GeSubCategoryDivisionItemDTO> geSubCategoriesDivisionItem;
+
+	public List<GeSubCategoryDivisionItemDTO> getGeSubCategoriesDivisionItem() {
+		return geSubCategoriesDivisionItem;
+	}
+
+	public void setGeSubCategoriesDivisionItem(List<GeSubCategoryDivisionItemDTO> geSubCategoriesDivisionItem) {
+		this.geSubCategoriesDivisionItem = geSubCategoriesDivisionItem;
+	}
 
 	public Long getId() {
 		return id;
@@ -46,20 +54,7 @@ public class GECategoryDTO implements Serializable {
 		this.toAge = toAge;
 	}
 
-	public String getBgImageURL() {
-		return bgImageURL;
-	}
 
-	public void setBgImageURL(String bgImageURL) {
-		this.bgImageURL = bgImageURL;
-	}
 
-	public List<GeSubCategoryDTO> getGeSubCategories() {
-		return geSubCategories;
-	}
-
-	public void setGeSubCategories(List<GeSubCategoryDTO> geSubCategories) {
-		this.geSubCategories = geSubCategories;
-	}
 
 }

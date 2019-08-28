@@ -6,10 +6,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -35,19 +36,33 @@ public class GeCategory implements Serializable {
 	@Column(name = "name", length = 64, nullable = false)
 	private String name;
 
-	@Column(name = "from_year", length = 64, nullable = false)
-	private Long fromYear;
+	@Column(name = "from_age", length = 64, nullable = false)
+	private Long fromAge;
 
-	@Column(name = "to_year", length = 64, nullable = false)
-	private Long toYear;
+	@Column(name = "to_age", length = 64, nullable = false)
+	private Long toAge;
 
-	@Column(name = "scale_unit", length = 64, nullable = false)
-	private String scaleUnit;
+	@Column(name = "bg_img_url", length = 64, nullable = false)
+	private String bgImageURL;
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "geCat", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "geCat", cascade = CascadeType.ALL, orphanRemoval=true)
 	@ApiModelProperty(hidden = true)
 	private List<GeSubCategory> geSubCategories;
+
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "ge_page_id")
+	@ApiModelProperty(hidden = true)
+	private GePage gePage;
+
+	public GePage getGePage() {
+		return gePage;
+	}
+
+	public void setGePage(GePage gePage) {
+		this.gePage = gePage;
+	}
 
 	public Long getId() {
 		return id;
@@ -73,28 +88,36 @@ public class GeCategory implements Serializable {
 		this.geSubCategories = geSubCategories;
 	}
 
-	public Long getFromYear() {
-		return fromYear;
+	public Long getFromAge() {
+		return fromAge;
 	}
 
-	public void setFromYear(Long fromYear) {
-		this.fromYear = fromYear;
+	public void setFromAge(Long fromAge) {
+		this.fromAge = fromAge;
 	}
 
-	public Long getToYear() {
-		return toYear;
+	public Long getToAge() {
+		return toAge;
 	}
 
-	public void setToYear(Long toYear) {
-		this.toYear = toYear;
+	public void setToAge(Long toAge) {
+		this.toAge = toAge;
 	}
 
-	public String getScaleUnit() {
-		return scaleUnit;
+	public String getBgImageURL() {
+		return bgImageURL;
 	}
 
-	public void setScaleUnit(String scaleUnit) {
-		this.scaleUnit = scaleUnit;
+	public void setBgImageURL(String bgImageURL) {
+		this.bgImageURL = bgImageURL;
 	}
 
+	@Override
+	public String toString() {
+		return "GeCategory [id=" + id + ", name=" + name + ", fromAge=" + fromAge + ", toAge=" + toAge + ", bgImageURL="
+				+ bgImageURL + ", geSubCategories=" + geSubCategories+"]";
+	}
+	
+
+	
 }

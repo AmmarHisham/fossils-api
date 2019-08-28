@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fossils.fossils.entity.GeCategory;
 import com.fossils.fossils.entity.GeSubCategory;
 import com.fossils.fossils.repository.GECategoryRepository;
 import com.fossils.fossils.repository.GESubCategoryRepository;

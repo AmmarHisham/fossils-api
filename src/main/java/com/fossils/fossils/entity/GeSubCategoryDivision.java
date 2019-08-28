@@ -14,22 +14,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@Table(name = "ge_subcategory")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class GeSubCategory implements Serializable {
+@Table(name = "ge_subcategory_div")
+public class GeSubCategoryDivision implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	public GeSubCategory() {
-	}
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id", nullable = false)
@@ -44,16 +38,20 @@ public class GeSubCategory implements Serializable {
 
 	@Column(name = "to_age", length = 64, nullable = false)
 	private Long toAge;
-
+		
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "ge_category_id")
+	@JoinColumn(name = "ge_subcategory_id")
 	@ApiModelProperty(hidden = true)
-	private GeCategory geCat;
+	private GeSubCategory geSubCategory;
+	
+	@OneToMany(mappedBy = "geSubCategoryDivision", cascade = CascadeType.ALL, orphanRemoval=true)
+	@ApiModelProperty(hidden = true)
+	private List<GeSubCategoryDivisionItem> geSubCategoriesDivisionItem;
 
-	@OneToMany(mappedBy = "geSubCategory", cascade = CascadeType.ALL, orphanRemoval=true)
-	@ApiModelProperty(hidden = true)
-	private List<GeSubCategoryDivision> geSubCategoriesDivision;
+	public GeSubCategoryDivision() {
+		super();
+	}
 
 	public Long getId() {
 		return id;
@@ -87,27 +85,20 @@ public class GeSubCategory implements Serializable {
 		this.toAge = toAge;
 	}
 
-	public GeCategory getGeCat() {
-		return geCat;
+	public GeSubCategory getGeSubCategory() {
+		return geSubCategory;
 	}
 
-	public void setGeCat(GeCategory geCat) {
-		this.geCat = geCat;
-	}
-
-	public List<GeSubCategoryDivision> getGeSubCategoriesDivision() {
-		return geSubCategoriesDivision;
-	}
-
-	public void setGeSubCategoriesDivision(List<GeSubCategoryDivision> geSubCategoriesDivision) {
-		this.geSubCategoriesDivision = geSubCategoriesDivision;
+	public void setGeSubCategory(GeSubCategory geSubCategory) {
+		this.geSubCategory = geSubCategory;
 	}
 
 	@Override
 	public String toString() {
-		return "GeSubCategory [id=" + id + ", name=" + name + ", fromAge=" + fromAge + ", toAge=" + toAge + ", geSubCategoriesDivision=" + geSubCategoriesDivision + "]";
+		return "GeSubCategoryDivision [id=" + id + ", name=" + name + ", fromAge=" + fromAge + ", toAge=" + toAge
+			+ ", geSubCategoriesDivisionItem=" + geSubCategoriesDivisionItem
+				+ "]";
 	}
 
 
-	
 }
