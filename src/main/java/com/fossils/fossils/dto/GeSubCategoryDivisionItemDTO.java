@@ -1,9 +1,9 @@
 package com.fossils.fossils.dto;
 
-public class GeSubCategoryDivisionItemDTO  {
-
+public class GeSubCategoryDivisionItemDTO {
 
 	private Long id;
+	private String itemTitle;
 	private String itemDescription;
 	private String itemImageUrl;
 	private Long itemAge;
@@ -14,6 +14,14 @@ public class GeSubCategoryDivisionItemDTO  {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getItemTitle() {
+		return itemTitle;
+	}
+
+	public void setItemTitle(String itemTitle) {
+		this.itemTitle = itemTitle;
 	}
 
 	public String getItemDescription() {
@@ -39,6 +47,5 @@ public class GeSubCategoryDivisionItemDTO  {
 	public void setItemAge(Long itemAge) {
 		this.itemAge = itemAge;
 	}
-
 
 }

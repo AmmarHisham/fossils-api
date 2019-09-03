@@ -25,6 +25,9 @@ public class GeSubCategoryDivisionItem implements Serializable {
 	@Column(name = "Id", nullable = false)
 	@ApiModelProperty(hidden = true)
 	private Long id;
+	
+	@Column(name = "item_title")
+	private String itemTitle;
 
 	@Column(name = "item_description")
 	private String itemDescription;
@@ -44,6 +47,17 @@ public class GeSubCategoryDivisionItem implements Serializable {
 	public GeSubCategoryDivisionItem() {
 		super();
 	}
+
+	
+	public String getItemTitle() {
+		return itemTitle;
+	}
+
+
+	public void setItemTitle(String itemTitle) {
+		this.itemTitle = itemTitle;
+	}
+
 
 	public Long getId() {
 		return id;
