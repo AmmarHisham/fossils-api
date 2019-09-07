@@ -51,9 +51,9 @@ public class GeSubCategory implements Serializable {
 	@ApiModelProperty(hidden = true)
 	private GeCategory geCat;
 
-	@OneToMany(mappedBy = "geSubCategory", cascade = CascadeType.ALL, orphanRemoval=true)
+	@OneToMany(mappedBy = "geSubCategory", cascade = CascadeType.ALL, orphanRemoval = true)
 	@ApiModelProperty(hidden = true)
-	private List<GeSubCategoryDivision> geSubCategoriesDivision;
+	private List<GeSubCategoryDivision> child;
 
 	public Long getId() {
 		return id;
@@ -95,19 +95,18 @@ public class GeSubCategory implements Serializable {
 		this.geCat = geCat;
 	}
 
-	public List<GeSubCategoryDivision> getGeSubCategoriesDivision() {
-		return geSubCategoriesDivision;
+	public List<GeSubCategoryDivision> getChild() {
+		return child;
 	}
 
-	public void setGeSubCategoriesDivision(List<GeSubCategoryDivision> geSubCategoriesDivision) {
-		this.geSubCategoriesDivision = geSubCategoriesDivision;
+	public void setChild(List<GeSubCategoryDivision> child) {
+		this.child = child;
 	}
 
 	@Override
 	public String toString() {
-		return "GeSubCategory [id=" + id + ", name=" + name + ", fromAge=" + fromAge + ", toAge=" + toAge + ", geSubCategoriesDivision=" + geSubCategoriesDivision + "]";
+		return "GeSubCategory [id=" + id + ", name=" + name + ", fromAge=" + fromAge + ", toAge=" + toAge
+				+ ", geSubCategoriesDivision=" + child + "]";
 	}
 
-
-	
 }

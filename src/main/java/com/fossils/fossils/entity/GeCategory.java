@@ -48,7 +48,7 @@ public class GeCategory implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "geCat", cascade = CascadeType.ALL, orphanRemoval=true)
 	@ApiModelProperty(hidden = true)
-	private List<GeSubCategory> geSubCategories;
+	private List<GeSubCategory> child;
 
 	@JsonIgnore
 	@ManyToOne
@@ -80,12 +80,12 @@ public class GeCategory implements Serializable {
 		this.name = name;
 	}
 
-	public List<GeSubCategory> getGeSubCategories() {
-		return geSubCategories;
+	public List<GeSubCategory> getChild() {
+		return child;
 	}
 
-	public void setGeSubCategories(List<GeSubCategory> geSubCategories) {
-		this.geSubCategories = geSubCategories;
+	public void setChild(List<GeSubCategory> child) {
+		this.child = child;
 	}
 
 	public Long getFromAge() {
@@ -115,9 +115,9 @@ public class GeCategory implements Serializable {
 	@Override
 	public String toString() {
 		return "GeCategory [id=" + id + ", name=" + name + ", fromAge=" + fromAge + ", toAge=" + toAge + ", bgImageURL="
-				+ bgImageURL + ", geSubCategories=" + geSubCategories+"]";
+				+ bgImageURL + ", geSubCategories=" + child+"]";
 	}
-	
 
-	
+
+
 }

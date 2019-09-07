@@ -21,12 +21,15 @@ import io.swagger.annotations.ApiModelProperty;
 public class GePage implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id", nullable = false)
 	@ApiModelProperty(hidden = true)
 	private Long id;
+
+	@Column(name = "bkd_image", length = 64, nullable = false)
+	private String bkgImage;
 
 	@Column(name = "name", length = 64, nullable = false)
 	private String name;
@@ -39,19 +42,11 @@ public class GePage implements Serializable {
 
 	@Column(name = "scale_unit", length = 64, nullable = false)
 	private Long scaleUnit;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "gePage", cascade = CascadeType.ALL, orphanRemoval=true)
 	@ApiModelProperty(hidden = true)
-	private List<GeCategory> geCategories;
-
-	public List<GeCategory> getGeCategories() {
-		return geCategories;
-	}
-
-	public void setGeCategories(List<GeCategory> geCategories) {
-		this.geCategories = geCategories;
-	}
+	private List<GeCategory> child;
 
 	public Long getId() {
 		return id;
@@ -93,10 +88,26 @@ public class GePage implements Serializable {
 		this.scaleUnit = scaleUnit;
 	}
 
+	public String getBkgImage() {
+		return bkgImage;
+	}
+
+	public void setBkgImage(String bkgImage) {
+		this.bkgImage = bkgImage;
+	}
+
+	public List<GeCategory> getChild() {
+		return child;
+	}
+
+	public void setChild(List<GeCategory> child) {
+		this.child = child;
+	}
+
 	@Override
 	public String toString() {
 		return "GePage [id=" + id + ", name=" + name + ", fromAge=" + fromAge + ", toAge=" + toAge + ", scaleUnit="
-				+ scaleUnit + ", geCategories=" + geCategories + "]";
+				+ scaleUnit + ", geCategories=" + child + "]";
 	}
 
 

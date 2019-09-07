@@ -11,7 +11,7 @@ public class GeSubCategoryDTO implements Serializable {
 	private String name;
 	private Long fromAge;
 	private Long toAge;
-	private List<GeSubCategoryDivisionDTO> geSubCategoriesDivision;
+	private List<GeSubCategoryDivisionDTO> child;
 
 	public Long getId() {
 		return id;
@@ -45,12 +45,12 @@ public class GeSubCategoryDTO implements Serializable {
 		this.toAge = toAge;
 	}
 
-	public List<GeSubCategoryDivisionDTO> getGeSubCategoriesDivision() {
-		return geSubCategoriesDivision;
+	public List<GeSubCategoryDivisionDTO> getChild() {
+		return child;
 	}
 
-	public void setGeSubCategoriesDivision(List<GeSubCategoryDivisionDTO> geSubCategoriesDivision) {
-		this.geSubCategoriesDivision = geSubCategoriesDivision;
+	public void setChild(List<GeSubCategoryDivisionDTO> child) {
+		this.child = child;
 	}
 
 }

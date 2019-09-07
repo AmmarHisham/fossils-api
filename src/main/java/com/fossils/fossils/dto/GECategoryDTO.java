@@ -12,7 +12,7 @@ public class GECategoryDTO implements Serializable {
 	private Long fromAge;
 	private Long toAge;
 	private String bgImageURL;
-	private List<GeSubCategoryDTO> geSubCategories;
+	private List<GeSubCategoryDTO> child;
 
 	public Long getId() {
 		return id;
@@ -54,12 +54,14 @@ public class GECategoryDTO implements Serializable {
 		this.bgImageURL = bgImageURL;
 	}
 
-	public List<GeSubCategoryDTO> getGeSubCategories() {
-		return geSubCategories;
+	public List<GeSubCategoryDTO> getChild() {
+		return child;
 	}
 
-	public void setGeSubCategories(List<GeSubCategoryDTO> geSubCategories) {
-		this.geSubCategories = geSubCategories;
+	public void setChild(List<GeSubCategoryDTO> child) {
+		this.child = child;
 	}
+
+
 
 }

@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class GeSubCategoryDivision implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id", nullable = false)
@@ -38,16 +38,16 @@ public class GeSubCategoryDivision implements Serializable {
 
 	@Column(name = "to_age", length = 64, nullable = false)
 	private Long toAge;
-		
+
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "ge_subcategory_id")
 	@ApiModelProperty(hidden = true)
 	private GeSubCategory geSubCategory;
-	
+
 	@OneToMany(mappedBy = "geSubCategoryDivision", cascade = CascadeType.ALL, orphanRemoval=true)
 	@ApiModelProperty(hidden = true)
-	private List<GeSubCategoryDivisionItem> geSubCategoriesDivisionItem;
+	private List<GeSubCategoryDivisionItem> child;
 
 	public GeSubCategoryDivision() {
 		super();
@@ -93,10 +93,18 @@ public class GeSubCategoryDivision implements Serializable {
 		this.geSubCategory = geSubCategory;
 	}
 
+	public List<GeSubCategoryDivisionItem> getChild() {
+		return child;
+	}
+
+	public void setChild(List<GeSubCategoryDivisionItem> child) {
+		this.child = child;
+	}
+
 	@Override
 	public String toString() {
 		return "GeSubCategoryDivision [id=" + id + ", name=" + name + ", fromAge=" + fromAge + ", toAge=" + toAge
-			+ ", geSubCategoriesDivisionItem=" + geSubCategoriesDivisionItem
+			+ ", geSubCategoriesDivisionItem=" + child
 				+ "]";
 	}
 
